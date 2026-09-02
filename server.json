@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.mcp-dir/stone_vendas-mcp",
+  "title": "Stone Vendas",
+  "description": "Stone acquirer (card machine) sales via the Conciliação API, read-only. Lists transactions for a per",
+  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/mcp-dir/stone_vendas-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.mcp.ai/p_stone_vendas"
+    }
+  ]
+}

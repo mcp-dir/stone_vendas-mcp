@@ -1,0 +1,34 @@
+# Smithery configuration for Stone Vendas
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_stone_vendas
+
+name: stone_vendas-mcp
+displayName: "Stone Vendas"
+description: >
+  Vendas do adquirente Stone (maquininha) pela API de Conciliação, somente leitura. Lista as transações por período com data e hora, valor bruto e líquido, forma de pagamento, bandeira, tipo de captura, parcelas e status, e consolida os totais por forma de pagamento, bandeira ou dia. Também traz cancelamentos, chargebacks, agenda de recebíveis e as liquidações depositadas na conta. Cobre também o Pix na maquininha, que a Stone entrega num arquivo separado por CNPJ. Cada StoneCode é uma conexão, e a mesma chave vale para todos os StoneCodes do CNPJ. Autenticação pela chave que o titular cria no Portal Stone, em Chaves de Autenticação. Complementa o Stone Pagamentos, que lê a conta bancária pelo Open Finance.
+
+version: 0.1.1
+license: MIT
+homepage: https://github.com/mcp-dir/stone_vendas-mcp
+repository: https://github.com/mcp-dir/stone_vendas-mcp
+
+tags:
+  - stone_vendas
+  - brazil
+  - fin
+  - horizontal
+  - read-only
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_stone_vendas
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_stone_vendas/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
